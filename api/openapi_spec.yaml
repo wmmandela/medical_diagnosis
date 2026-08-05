@@ -1,0 +1,54 @@
+openapi: 3.0.3
+info:
+  title: Hospital Medical Diagnosis Expert System API
+  description: REST API specification for Spring Boot & Python Kanren Medical Inference Engine.
+  version: 1.0.0
+paths:
+  /api/v1/diagnose:
+    post:
+      summary: Perform relational medical inference using Kanren engine
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                patient_profile:
+                  type: object
+                reported_symptoms:
+                  type: array
+                  items:
+                    type: string
+                risk_factors:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Diagnosis results with explainable reasoning trace and laboratory test recommendations.
+
+  /api/v1/next-questions:
+    post:
+      summary: Generate adaptive follow-up questions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reported_symptoms:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: List of targeted follow-up questions.
+
+  /api/v1/knowledge-base:
+    get:
+      summary: Inspect medical knowledge base diseases and symptoms
+      responses:
+        '200':
+          description: Knowledge base summary.

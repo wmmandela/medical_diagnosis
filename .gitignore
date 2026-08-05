@@ -1,0 +1,31 @@
+# Virtual Environments
+venv/
+.venv/
+expert_system/venv/
+env/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Node & Frontend
+node_modules/
+dist/
+build/
+.next/
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
+*.swp
