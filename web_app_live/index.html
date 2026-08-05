@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AegisMed AI - Clinician Portal & Diagnostic Triage System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=5">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-theme">
+
+    <!-- LANDING & AUTH SCREEN (Default Entry View) -->
+    <div class="landing-screen" id="landingPageScreen">
+        <header class="landing-nav">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-user-nurse"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>AegisMed <span>Clinician Portal</span></h1>
+                    <p>AI Clinical Decision Support & Differential Triage System</p>
+                </div>
+            </div>
+            <div class="landing-nav-actions">
+                <button class="btn btn-outline" id="btnLandingSignInTab">Sign In</button>
+                <button class="btn btn-primary" id="btnLandingRegisterTab">Create Account</button>
+            </div>
+        </header>
+
+        <div class="landing-hero-container">
+            <div class="landing-hero-left">
+                <span class="badge-tag"><i class="fa-solid fa-shield-halved"></i> Clinician-Grade AI Decision Support</span>
+                <h2>Intelligent Differential Diagnosis & Adaptive Triage</h2>
+                <p>Empowering healthcare professionals with real-time evidence-based condition ranking, adaptive symptom screening, and targeted laboratory investigation plans.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <i class="fa-solid fa-lock"></i>
+                        <div>
+                            <h4>Encrypted Clinician Auth</h4>
+                            <p>Secure email-authenticated access for licensed medical professionals.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-stethoscope"></i>
+                        <div>
+                            <h4>Adaptive Symptom Screening</h4>
+                            <p>Distinguishes leading differentials through targeted clinical questions.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-vials"></i>
+                        <div>
+                            <h4>Targeted Test Guidance</h4>
+                            <p>Order recommended confirmation lab tests and record results effortlessly.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-file-medical"></i>
+                        <div>
+                            <h4>ICD-10 Aligned Reports</h4>
+                            <p>Export downloadable clinical consultation summaries for medical records.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Authentication Card -->
+            <div class="landing-hero-right">
+                <div class="auth-card">
+                    <div class="auth-tabs">
+                        <button class="auth-tab-btn active" id="tabBtnSignIn">Sign In</button>
+                        <button class="auth-tab-btn" id="tabBtnRegister">Create Account</button>
+                    </div>
+
+                    <!-- Sign In Form -->
+                    <form id="formSignIn" class="auth-form active">
+                        <h3 class="auth-title">Welcome Back, Clinician</h3>
+                        <p class="auth-subtitle">Sign in to access your clinical diagnostic workstation.</p>
+
+                        <div class="form-group">
+                            <label for="loginEmail"><i class="fa-solid fa-envelope"></i> Email Address</label>
+                            <input type="email" id="loginEmail" placeholder="name@hospital.org" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loginPassword"><i class="fa-solid fa-key"></i> Password</label>
+                            <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                        </div>
+
+                        <div class="auth-options">
+                            <label class="remember-me"><input type="checkbox"> Remember me</label>
+                            <a href="#" class="forgot-pass-link" id="linkForgotPassword">Forgot password?</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                            <i class="fa-solid fa-right-to-bracket"></i> Sign In to Clinician Portal
+                        </button>
+                    </form>
+
+                    <!-- Create Account Form -->
+                    <form id="formRegister" class="auth-form hidden">
+                        <h3 class="auth-title">Register Clinician Account</h3>
+                        <p class="auth-subtitle">Create a licensed clinician profile for full diagnostic access.</p>
+
+                        <div class="form-group">
+                            <label for="regName"><i class="fa-solid fa-user-doctor"></i> Full Name & Title</label>
+                            <input type="text" id="regName" placeholder="e.g. Dr. Jane Doe" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regEmail"><i class="fa-solid fa-envelope"></i> Medical Email Address</label>
+                            <input type="email" id="regEmail" placeholder="name@hospital.org" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regFacility"><i class="fa-solid fa-hospital"></i> Medical Facility / Department</label>
+                            <input type="text" id="regFacility" placeholder="e.g. City General Hospital — Emergency Medicine" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="regPassword"><i class="fa-solid fa-key"></i> Password</label>
+                                <input type="password" id="regPassword" placeholder="Enter password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="regConfirmPassword"><i class="fa-solid fa-shield-halved"></i> Confirm Password</label>
+                                <input type="password" id="regConfirmPassword" placeholder="Confirm password" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                            <i class="fa-solid fa-user-plus"></i> Create Account & Launch Workspace
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CLINICIAN WORKSPACE (Shown after Sign In) -->
+    <div id="mainWorkspaceApp" class="hidden">
+        <!-- Top Navigation Header -->
+        <header class="app-header">
+            <div class="logo-container">
+                <button class="sidebar-toggle-icon" id="btnToggleSidebar" title="Toggle Sidebar Navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="logo-icon">
+                    <i class="fa-solid fa-user-nurse"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>AegisMed <span>Clinician AI</span></h1>
+                    <p>Clinical Decision Support & Differential Triage Workstation</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <span class="engine-status-pill" id="engineStatusPill">
+                    <span class="status-dot online"></span> System Status: Active
+                </span>
+                <button class="btn btn-outline" id="btnConsultationHistory">
+                    <i class="fa-solid fa-clock-rotate-left"></i> History
+                </button>
+                <button class="btn btn-primary" id="btnNewConsultation">
+                    <i class="fa-solid fa-plus"></i> New Consultation
+                </button>
+            </div>
+        </header>
+
+        <!-- Main App Container -->
+        <main class="app-main-container">
+            <!-- Collapsible Sidebar Navigation -->
+            <aside class="app-sidebar" id="appSidebar">
+                <div class="sidebar-header-row">
+                    <span class="sidebar-label">CLINICIAN PROFILE</span>
+                    <button class="btn-icon-collapse" id="btnCollapseSidebar" title="Collapse Sidebar">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                </div>
+
+                <!-- Doctor Profile Card -->
+                <div class="doctor-profile-card">
+                    <div class="avatar">
+                        <i class="fa-solid fa-user-doctor"></i>
+                    </div>
+                    <div class="doctor-info">
+                        <h3 id="displayDoctorName">Dr. Sarah Jenkins, MD</h3>
+                        <p id="displayDoctorRole">Attending Physician</p>
+                        <span class="dept-badge" id="displayDoctorFacility">St. Jude Medical Center</span>
+                    </div>
+                </div>
+
+                <nav class="nav-menu">
+                    <a href="#" class="nav-item active" data-tab="consultation">
+                        <i class="fa-solid fa-stethoscope"></i> <span>Diagnostic Consultation</span>
+                    </a>
+                    <a href="#" class="nav-item" data-tab="kb_browser">
+                        <i class="fa-solid fa-book-medical"></i> <span>Knowledge Base (30+ Diseases)</span>
+                    </a>
+                </nav>
+
+                <!-- Sidebar Footer: Sign Out Button at Bottom -->
+                <div class="sidebar-footer">
+                    <button class="btn btn-outline-danger btn-block" id="btnSignOut">
+                        <i class="fa-solid fa-right-from-bracket"></i> <span>Sign Out</span>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Content Area -->
+            <section class="content-area">
+                <div class="tab-pane active" id="tabConsultation">
+                    <!-- EMERGENCY RED FLAGS BANNER (Shown if triggered) -->
+                    <div class="alert alert-emergency hidden" id="emergencyHaltBanner">
+                        <div class="emergency-icon">
+                            <i class="fa-solid fa-truck-medical fa-beat"></i>
+                        </div>
+                        <div>
+                            <h2>CRITICAL EMERGENCY RED FLAG DETECTED</h2>
+                            <p id="emergencyHaltMessage">Patient presents with life-threatening symptoms. Diagnostic interview halted. Call Emergency Medical Services (EMS) or transfer to Emergency Room immediately.</p>
+                            <ul id="redFlagsDetectedList" style="margin-top: 10px; font-weight: bold;"></ul>
+                        </div>
+                    </div>
+
+                    <div class="consultation-grid" id="mainConsultationGrid">
+                        <!-- Left Column: Multi-Stage Interview Form -->
+                        <div class="glass-card questionnaire-card">
+                            <div class="card-header">
+                                <h2><i class="fa-solid fa-clipboard-question"></i> Clinician Interview & Triage</h2>
+                                <span class="step-badge" id="stepBadge">Phase 1 of 3: Emergency Screening & Vitals</span>
+                            </div>
+
+                            <!-- Phase 1: Red Flags & Vitals -->
+                            <div class="questionnaire-step active" id="phase1">
+                                <h3 class="step-title">1. Emergency Red Flags Screening (Check any present)</h3>
+                                <div class="red-flags-box">
+                                    <label class="red-flag-chip"><input type="checkbox" name="red_flags" value="severe_chest_pain"> Severe / Sudden Chest Pain</label>
+                                    <label class="red-flag-chip"><input type="checkbox" name="red_flags" value="unconsciousness"> Loss of Consciousness / Fainting</label>
+                                    <label class="red-flag-chip"><input type="checkbox" name="red_flags" value="severe_breathing_difficulty"> Severe Respiratory Distress</label>
+                                    <label class="red-flag-chip"><input type="checkbox" name="red_flags" value="seizures"> Active Seizures</label>
+                                    <label class="red-flag-chip"><input type="checkbox" name="red_flags" value="stroke_symptoms"> Stroke Signs (Facial droop, slurred speech)</label>
+                                    <label class="red-flag-chip"><input type="checkbox" name="red_flags" value="uncontrolled_bleeding"> Severe Uncontrolled Hemorrhage</label>
+                                </div>
+
+                                <h3 class="step-title" style="margin-top: 20px;">2. Patient Demographics & Baseline Vitals</h3>
+                                <form id="patientForm" onsubmit="event.preventDefault();">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="patientName"><i class="fa-solid fa-user"></i> Patient Name</label>
+                                            <input type="text" id="patientName" value="Eleanor Vance" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="patientAge"><i class="fa-solid fa-cake-candles"></i> Age</label>
+                                            <input type="number" id="patientAge" value="34" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="patientGender"><i class="fa-solid fa-venus-mars"></i> Sex</label>
+                                            <select id="patientGender">
+                                                <option value="Female" selected>Female</option>
+                                                <option value="Male">Male</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="isPregnant"><i class="fa-solid fa-baby"></i> Pregnancy Status</label>
+                                            <select id="isPregnant">
+                                                <option value="false" selected>Not Pregnant</option>
+                                                <option value="true">Currently Pregnant</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="feverDegree"><i class="fa-solid fa-temperature-high"></i> Body Temp (°C)</label>
+                                            <input type="number" step="0.1" id="feverDegree" value="38.8">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="painLevel"><i class="fa-solid fa-gauge-high"></i> Pain Severity Scale (1-10)</label>
+                                            <input type="range" id="painLevel" min="0" max="10" value="6" oninput="document.getElementById('painVal').innerText = this.value">
+                                            <span class="range-val"><span id="painVal">6</span> / 10</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label><i class="fa-solid fa-notes-medical"></i> Chronic Illnesses & Known Allergies</label>
+                                        <div class="checkbox-chips">
+                                            <label class="chip"><input type="checkbox" name="chronic" value="hypertension"> Hypertension</label>
+                                            <label class="chip"><input type="checkbox" name="chronic" value="diabetes_mellitus"> Diabetes</label>
+                                            <label class="chip"><input type="checkbox" name="chronic" value="asthma"> Asthma</label>
+                                            <label class="chip"><input type="checkbox" name="chronic" value="kidney_disease"> Kidney Disease</label>
+                                            <label class="chip"><input type="checkbox" name="chronic" value="liver_disease"> Liver Disease</label>
+                                            <label class="chip"><input type="checkbox" name="allergies" value="penicillin"> Penicillin Allergy</label>
+                                            <label class="chip"><input type="checkbox" name="allergies" value="nsaid"> NSAID Allergy</label>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn btn-primary btn-block btn-lg" id="btnNextPhase1">
+                                        Proceed to Categorized Symptom Selection <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- Phase 2: Categorized Symptom Library & Free-Text Input -->
+                            <div class="questionnaire-step" id="phase2">
+                                <h3 class="step-title">Categorized Symptom Selection</h3>
+                                <p class="step-subtitle">Select reported symptoms across categories or type unlisted symptoms below.</p>
+
+                                <!-- Category Nav Pills -->
+                                <div class="category-pills-nav" id="categoryPillsNav">
+                                    <button class="cat-pill active" data-cat="systemic">Fever & Systemic</button>
+                                    <button class="cat-pill" data-cat="respiratory">Respiratory</button>
+                                    <button class="cat-pill" data-cat="gastrointestinal">GI & Abdominal</button>
+                                    <button class="cat-pill" data-cat="neurological">Neurological</button>
+                                    <button class="cat-pill" data-cat="dermatological">Skin</button>
+                                    <button class="cat-pill" data-cat="urological">Urinary</button>
+                                    <button class="cat-pill" data-cat="musculoskeletal">Joints/Muscles</button>
+                                </div>
+
+                                <!-- Symptom Cards Grid -->
+                                <div class="symptom-selector-grid" id="symptomsCategoryGrid">
+                                    <!-- Populated dynamically by app.js -->
+                                </div>
+
+                                <!-- Free-Text "Other Symptoms" Input -->
+                                <div class="form-group" style="margin-top: 20px;">
+                                    <label for="customSymptomsText"><i class="fa-solid fa-pen-to-square"></i> Other Symptoms (Free-Text Input)</label>
+                                    <textarea id="customSymptomsText" class="form-control" rows="2" placeholder="Type unlisted symptoms e.g., 'throwing up', 'shivering', 'yellow skin', 'stiff neck'..."></textarea>
+                                </div>
+
+                                <div class="step-actions" style="margin-top: 20px;">
+                                    <button type="button" class="btn btn-secondary" id="btnBackPhase1">
+                                        <i class="fa-solid fa-arrow-left"></i> Back
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="btnNextPhase2">
+                                        Proceed to Adaptive Questions <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Phase 3: Adaptive Clinical Questions -->
+                            <div class="questionnaire-step" id="phase3">
+                                <div class="phase3-header">
+                                    <div>
+                                        <h3 class="step-title">Adaptive Diagnostic Questions</h3>
+                                        <p class="step-subtitle">Answer adaptive clinical screening questions to refine differential condition ranking.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Collapsible Candidate Pool Widget -->
+                                <div id="candidatePoolContainer" class="candidate-pool-widget"></div>
+
+                                <!-- Clear Spacious Dynamic Questions Container -->
+                                <div id="dynamicQuestionsContainer" class="dynamic-questions-list"></div>
+                                <div id="questionPaginationControls" class="pagination-controls hidden" style="margin-top: 14px; display:flex; gap:10px; justify-content:space-between; align-items:center;">
+                                    <span id="questionPageIndicator" style="font-size:0.85rem; font-weight:600; color:var(--text-secondary);">Page 1</span>
+                                    <div style="display:flex; gap:8px;">
+                                        <button type="button" class="btn btn-outline btn-sm" id="btnQuestionPrev">Previous</button>
+                                        <button type="button" class="btn btn-outline btn-sm" id="btnQuestionNext">Next</button>
+                                    </div>
+                                </div>
+
+                                <div class="step-actions" style="margin-top: 24px;">
+                                    <button type="button" class="btn btn-secondary" id="btnBackPhase2">
+                                        <i class="fa-solid fa-arrow-left"></i> Back
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-lg" id="btnRunInference">
+                                        Record Answers & Calculate Differential <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Clean Diagnosis Output -->
+                        <div class="glass-card diagnosis-card">
+                            <div class="card-header">
+                                <h2><i class="fa-solid fa-brain"></i> Diagnostic Output & Differential</h2>
+                                <button class="btn btn-sm btn-outline" id="btnExportPDF" disabled>
+                                    <i class="fa-solid fa-file-pdf"></i> Export Report
+                                </button>
+                            </div>
+
+                            <!-- Empty Placeholder -->
+                            <div class="empty-state" id="emptyDiagnosisState">
+                                <i class="fa-solid fa-microscope"></i>
+                                <h3>Awaiting Consultation Completion</h3>
+                                <p>Complete triage, select symptoms, and click "Record Answers & Calculate Differential".</p>
+                            </div>
+
+                            <!-- Active Results State -->
+                            <div class="diagnosis-results hidden" id="diagnosisResults">
+                                <!-- Inconclusive Advisory Alert -->
+                                <div class="alert alert-warning hidden" id="inconclusiveAlert">
+                                    <h4><i class="fa-solid fa-triangle-exclamation"></i> Inconclusive Findings</h4>
+                                    <p id="inconclusiveText">No single disease satisfied the required clinical confidence threshold (>50%).</p>
+                                </div>
+
+                                <!-- Urgency Banner -->
+                                <div class="urgency-banner" id="urgencyBanner">
+                                    <i class="fa-solid fa-triangle-exclamation"></i>
+                                    <div>
+                                        <h4 id="urgencyBadgeText">URGENT - MEDICAL EVALUATION RECOMMENDED</h4>
+                                        <p id="urgencyActionText">Schedule urgent outpatient clinic evaluation within 12-24 hours.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Contraindications Alert -->
+                                <div class="alert alert-danger hidden" id="contraindicationAlert">
+                                    <h4><i class="fa-solid fa-shield-halved"></i> Safety Contraindication Alert</h4>
+                                    <ul id="contraindicationList"></ul>
+                                </div>
+
+                                <!-- Confirmation Test Result Panel (High Visibility) -->
+                                <div class="section-block confirmation-test-card" id="testResultPanel" style="display:none;">
+                                    <h4><i class="fa-solid fa-vials"></i> Recommended Confirmation Test</h4>
+                                    <p id="testResultPrompt">The system recommends testing <strong id="testCandidateName" style="color:var(--primary-color); font-size:1.05rem;"></strong>.</p>
+                                    
+                                    <div id="testResultButtons" style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+                                        <button type="button" class="btn btn-success" id="btnTestPositive"><i class="fa-solid fa-check"></i> Test Positive</button>
+                                        <button type="button" class="btn btn-danger" id="btnTestNegative"><i class="fa-solid fa-xmark"></i> Test Negative</button>
+                                    </div>
+                                    <div id="testResultMessage" style="margin-top:12px;"></div>
+                                </div>
+
+                                <!-- Top Primary Diagnosis Box -->
+                                <div class="primary-diagnosis-box">
+                                    <div class="dx-header">
+                                        <div>
+                                            <span class="dx-category" id="dxCategory">Parasitic Infection</span>
+                                            <h3 id="dxName">Malaria</h3>
+                                            <span class="icd-code" id="dxIcd">ICD-10: B54</span>
+                                        </div>
+                                        <div class="confidence-ring">
+                                            <div class="ring-val" id="dxConfidence">85.0%</div>
+                                            <span class="ring-label">Confidence</span>
+                                        </div>
+                                    </div>
+
+                                    <p class="dx-desc" id="dxDesc">Mosquito-borne Plasmodium infection causing periodic high fever, chills, and sweating.</p>
+
+                                    <button class="btn btn-sm btn-primary" id="btnWhyThisDiagnosis" style="margin-top: 10px;">
+                                        <i class="fa-solid fa-circle-info"></i> Clinical Evidence & Reasoning Trace
+                                    </button>
+                                </div>
+
+                                <!-- Differential Diagnoses Ranking -->
+                                <div class="section-block">
+                                    <h4><i class="fa-solid fa-list-ol"></i> Differential Diagnoses Ranking</h4>
+                                    <div class="differential-list" id="differentialList"></div>
+                                </div>
+
+                                <!-- Eliminated Candidates Section -->
+                                <div class="section-block">
+                                    <h4><i class="fa-solid fa-circle-xmark" style="color: var(--accent-rose)"></i> Ruled Out / Eliminated Candidates</h4>
+                                    <div class="eliminated-list" id="eliminatedList"></div>
+                                </div>
+
+                                <!-- Recommendations & First Aid -->
+                                <div class="section-block">
+                                    <h4><i class="fa-solid fa-kit-medical"></i> Immediate First-Aid & Referral</h4>
+                                    <div class="recs-box">
+                                        <p><strong>Immediate First-Aid:</strong> <span id="recFirstAid">Bed rest and hydration.</span></p>
+                                        <p><strong>Specialist Referral:</strong> <span class="badge-referral" id="recReferral">Infectious Disease Specialist</span></p>
+                                    </div>
+                                </div>
+
+                                <!-- Recommended Laboratory Investigations -->
+                                <div class="section-block">
+                                    <h4><i class="fa-solid fa-vial-virus"></i> Recommended Laboratory Investigations</h4>
+                                    <div class="table-responsive">
+                                        <table class="data-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Test Name</th>
+                                                    <th>Sample</th>
+                                                    <th>Urgency</th>
+                                                    <th>Description</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="labTestsTableBody"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: Knowledge Base Browser -->
+                <div class="tab-pane hidden" id="tabKbBrowser">
+                    <div class="glass-card">
+                        <div class="card-header">
+                            <h2><i class="fa-solid fa-book-medical"></i> Clinical Knowledge Base (30+ Conditions)</h2>
+                        </div>
+                        <div class="kb-grid" id="kbGridContainer"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Password Reset Modal -->
+    <div class="drawer-overlay hidden" id="forgotPasswordModal">
+        <div class="drawer-content" style="width: 420px; border-radius: 16px; margin: auto; height: auto; max-height: 90vh;">
+            <div class="drawer-header">
+                <h3><i class="fa-solid fa-key"></i> Reset Password</h3>
+                <button class="btn-close" id="btnCloseForgotPass">&times;</button>
+            </div>
+            <div class="drawer-body">
+                <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:16px;">Enter your registered clinician email address below to receive password reset instructions.</p>
+                <div class="form-group">
+                    <label for="resetEmail"><i class="fa-solid fa-envelope"></i> Email Address</label>
+                    <input type="email" id="resetEmail" placeholder="name@hospital.org" required>
+                </div>
+                <button type="button" class="btn btn-primary btn-block" id="btnSendResetLink">
+                    Send Password Reset Link
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXPLAINABILITY MODAL -->
+    <div class="drawer-overlay hidden" id="explainabilityModal">
+        <div class="drawer-content" style="width: 550px;">
+            <div class="drawer-header">
+                <h3><i class="fa-solid fa-brain"></i> Clinical Evidence & Reasoning Trace</h3>
+                <button class="btn-close" id="btnCloseExplainability">&times;</button>
+            </div>
+            <div class="drawer-body" id="explainabilityContent"></div>
+        </div>
+    </div>
+
+    <!-- History Drawer -->
+    <div class="drawer-overlay hidden" id="historyDrawer">
+        <div class="drawer-content">
+            <div class="drawer-header">
+                <h3><i class="fa-solid fa-clock-rotate-left"></i> Consultation History</h3>
+                <button class="btn-close" id="btnCloseHistory">&times;</button>
+            </div>
+            <div class="drawer-body" id="historyListContainer"></div>
+        </div>
+    </div>
+
+    <script src="app.js?v=12"></script>
+</body>
+</html>
