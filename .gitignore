@@ -11,6 +11,12 @@ __pycache__/
 *.so
 .pytest_cache/
 
+# Java / Maven
+target/
+*.class
+*.jar
+*.war
+
 # Node & Frontend
 node_modules/
 dist/
@@ -22,10 +28,17 @@ build/
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
-build/
+
+# Office & Presentations (clean repo)
+*.pptx
+*.ppt
+*.docx
 
 # OS / IDE
 .DS_Store
 .vscode/
 .idea/
 *.swp
+
+# Workspace temp
+temp_repos/
